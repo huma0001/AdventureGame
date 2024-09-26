@@ -11,13 +11,13 @@ public class Adventure {
 
         // Rooms
         Room room1 = new Room("Room 1", "has no distinct features, except two doors");
-        Room room2 = new Room("Room 2", "has no distinct features, except two doors");
+        Room room2 = new Room("Room 2", "a very weird looking painting on the wall, it has two doors.");
         Room room3 = new Room("Room 3", "has no distinct features, except two doors");
-        Room room4 = new Room("Room 4", "has no distinct features, except two doors");
-        Room room5 = new Room("Room 5", "has no distinct features, except one doors");
+        Room room4 = new Room("Room 4", "Has a very weird smell, and two doors");
+        Room room5 = new Room("Room 5", "has a big golden chest and one door");
         Room room6 = new Room("Room 6", "has no distinct features, except two doors");
-        Room room7 = new Room("Room 7", "has no distinct features, except two doors");
-        Room room8 = new Room("Room 8", "has no distinct features, except three doors");
+        Room room7 = new Room("Room 7", "has a cat in the corner, it looks scared - it also has two doors");
+        Room room8 = new Room("Room 8", "has no distinct features but it has an extra door to choose from - three doors in total");
         Room room9 = new Room("Room 9", "has no distinct features, except two doors");
 
 
@@ -66,9 +66,9 @@ public class Adventure {
 
         // Set directions for room 8
         room8.setNorth(room5);
-        room8.setEast(null);
+        room8.setEast(room9);
         room8.setSouth(null);
-        room8.setWest(null);
+        room8.setWest(room7);
 
         // Set directions for room 9
         room9.setNorth(room6);
