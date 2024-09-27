@@ -33,6 +33,10 @@ public class Room {
 
 
     // Setter metode til alle instans variabler.
+    public void setName(String name){
+        this.name = name;
+    }
+
     public void setSouth(Room south){
         this.south = south;
     }
