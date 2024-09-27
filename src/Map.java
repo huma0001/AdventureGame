@@ -1,18 +1,19 @@
+import java.util.Random;
+
 public class Map {
     public Room roomCreator(){
-        // Rooms
-        Room room1 = new Room("Room 1", "has no distinct features, except two doors");
-        Room room2 = new Room("Room 2", "a very weird looking painting on the wall, it has two doors.");
-        Room room3 = new Room("Room 3", "has no distinct features, except two doors");
-        Room room4 = new Room("Room 4", "Has a very weird smell, and two doors");
-        Room room5 = new Room("Room 5", "has a big golden chest and one door");
-        Room room6 = new Room("Room 6", "has no distinct features, except two doors");
-        Room room7 = new Room("Room 7", "has a cat in the corner, it looks scared - it also has two doors");
-        Room room8 = new Room("Room 8", "has no distinct features but it has an extra door to choose from - three doors in total");
-        Room room9 = new Room("Room 9", "has no distinct features, except two doors");
+        // Rooms bliver lavet
+        Room room1 = new Room("\n---Room 1---", "\nThis room has no distinct features - It has two doors");
+        Room room2 = new Room("\n---Room 2---", "\nThis room has a very weird looking painting on the wall - it has two doors.");
+        Room room3 = new Room("\n---Room 3---", "\nThis room has no distinct features - it has two doors");
+        Room room4 = new Room("\n---Room 4---", "\nThis room has a very weird smell - it has two doors");
+        Room room5 = new Room("\n---Room 5---", "\nThis room has a big golden chest - it has one door");
+        Room room6 = new Room("\n---Room 6---", "\nThis room has no distinct features - It has two doors");
+        Room room7 = new Room("\n---Room 7---", "\nThis room has a cat in the corner, it looks scared - it has two doors");
+        Room room8 = new Room("\n---Room 8---", "\nThis room has no distinct features but it has an extra door to choose from - It has three doors in total");
+        Room room9 = new Room("\n---Room 9---", "\nThis room has no distinct features - It has two doors");
 
-
-        // Set directions for room 1
+        // Set directions for room 1 - Her definerer vi hvor brugeren kan gå
         room1.setNorth(null);
         room1.setEast(room2);
         room1.setSouth(room4);
@@ -23,7 +24,6 @@ public class Map {
         room2.setEast(room3);
         room2.setSouth(null);
         room2.setWest(room1);
-
 
         // Set directions for room 3
         room3.setNorth(null);
@@ -67,7 +67,9 @@ public class Map {
         room9.setSouth(null);
         room9.setWest(room8);
 
-
+        // Vi returnerer room 1 når vi kalder roomCreator(), da vi gerne vil returnere hvor brugeren starter spillet
         return room1;
+
     }
+
 }

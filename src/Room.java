@@ -3,16 +3,19 @@ public class Room {
     private String description;
     private Room south,east,west,north;
 
-
+    // Denne klasse er til at lave de specifikke rum og give dem et navn og en description
     public Room(String name, String description){
         this.name = name;
         this.description = description;
     }
 
-
     // Getter metode til alle instans variabler
     public String getName(){
         return name;
+    }
+
+    public String getDescription(){
+        return description;
     }
 
     public Room getNorth(){
@@ -30,7 +33,6 @@ public class Room {
     public Room getWest(){
         return west;
     }
-
 
     // Setter metode til alle instans variabler.
     public void setName(String name){
