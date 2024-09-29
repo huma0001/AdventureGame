@@ -1,6 +1,6 @@
 public class Player {
-    Room currentRoom;
-    Player player1;
+    private Room currentRoom;
+    private Player player1;
 
     public Player(Room roomPlayerSpawn){
         this.currentRoom = roomPlayerSpawn;

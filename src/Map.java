@@ -1,6 +1,6 @@
 import java.util.Random;
-
 public class Map {
+
     public Room roomCreator(){
         // Rooms bliver lavet
         Room room1 = new Room("\n---Room 1---", "\nThis room has no distinct features - It has two doors");

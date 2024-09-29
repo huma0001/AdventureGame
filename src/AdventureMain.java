@@ -4,6 +4,10 @@ public class AdventureMain {
     public static void main(String[] args) {
         // Starter spillet
         Ui ui = new Ui();
-        ui.startSpillet();
+        AdventureGameController gameController = new AdventureGameController();
+
+
+        ui.introduktion();
+        gameController.startSpillet();
     }
 }
