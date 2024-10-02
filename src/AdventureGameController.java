@@ -35,8 +35,18 @@ public class AdventureGameController {
                 switch (userCommand) {
                     case "help", "h" -> System.out.println("Commands:\ngo north - To go north\ngo south - To go south\ngo east - To go east\n" +
                             "go west - To go west\nlook - To look around current room\nhelp - To view commands\nexit - to exit the game");
-                    case "look", "l" ->
-                            System.out.println("Looking around the room..." + player1.getCurrentRoom().getName() + player1.getCurrentRoom().getDescription());
+                    case "look", "l" ->{
+                        System.out.println("Looking around the room...");
+                        if(!player1.getCurrentRoom().getItemList().isEmpty()) {
+                            System.out.println("\nTotal items in this room: " + player1.getCurrentRoom().totalItemCounter() + player1.getCurrentRoom().displayItems());
+                        } else {
+                            System.out.println(player1.getCurrentRoom().displayItems());
+                        }
+                    }
+                            //Lav en if statement hvis der er items i rummet så print total items ellers lad vær**
+                             case "take", "t" ->
+                            System.out.println("What would you like to take? *Enter item name*" + player1.getCurrentRoom().displayItems());
+                    case "drop", "d" -> System.out.println("What item would you like to drop?");
                     case "exit", "x" -> {
                         System.out.println("Exiting the program...");
                         keepRunning = false;
