@@ -92,6 +92,34 @@ public class Room {
         return printresult;
     }
 
+    //Metode til at tjekke om playeren er i samme rum som det item han prøver at tage - bruger findItem metoden
+
+    //Nye løsning til findItem
+    public Item findItem(String searchForItemName){
+        for (Item item : itemList) {
+            if (item.getName().equalsIgnoreCase(searchForItemName)) {
+                return item;
+            }
+        }
+        System.out.println("The item you are searching for: " + searchForItemName + " , does not exist in here.");
+        return null;
+    }
+
+
+    /* Min gamle løsning til findItem
+    public Item findItem(String searchForItemName){
+        ArrayList<Item> itemFinder = new ArrayList<Item>();
+        for (Item item : itemList){
+            if(item.getName().contains(searchForItemName)){
+                itemFinder.add(item);
+            } else if (itemFinder.isEmpty()){
+                System.out.println("There is no such thing as: " + searchForItemName);
+            }
+        }
+    }
+
+     */
+
     // To string
     public String toString() {
         return name + " " + description;

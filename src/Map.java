@@ -21,21 +21,21 @@ public class Map {
     public Room roomCreator(){
         Map map = new Map();
 
-        Item item1 = new Item("A Sword", ", It's long and rusty");
-        Item item2 = new Item("A Lamp", ", It's old and worn");
-        Item item3 = new Item("A Hat", ", It's black and dusty");
+        Item item1 = new Item("Sword", ", It's long and rusty");
+        Item item2 = new Item("Lamp", ", It's old and worn");
+        Item item3 = new Item("Hat", ", It's black and dusty");
 
-        Item item4 = new Item("A Gun", ", It's half broken");
-        Item item5 = new Item("A Shoe", ", It's missing the bottom half ");
-        Item item6 = new Item("A Stick", ", It's a perfectly intact stick");
+        Item item4 = new Item("Gun", ", It's half broken");
+        Item item5 = new Item("Shoe", ", It's missing the bottom half ");
+        Item item6 = new Item("Stick", ", It's a perfectly intact stick");
 
-        Item item7 = new Item("A Letter",", It has the words 'Hello' written on it");
-        Item item8 = new Item("A rock", ", It's shaped like a razor ");
-        Item item9 = new Item("A Stick", ", It's broken in half");
+        Item item7 = new Item("Letter",", It has the words 'Hello' written on it");
+        Item item8 = new Item("rock", ", It's shaped like a razor ");
+        Item item9 = new Item("Stick", ", It's broken in half");
 
-        Item item10 = new Item("A Gold coin",", It's shiny");
-        Item item11 = new Item("A shield", ", The wood looks moldy");
-        Item item12 = new Item("A scroll", ", The words are unreadable");
+        Item item10 = new Item("Gold coin",", It's shiny");
+        Item item11 = new Item("shield", ", The wood looks moldy");
+        Item item12 = new Item("scroll", ", The words are unreadable");
 
 
         // Rooms bliver lavet
