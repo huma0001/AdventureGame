@@ -15,16 +15,14 @@ public class AdventureGameController {
 
         Player player1 = new Player(roomSpawn);
 
-
         // While loop for at holde programmet kørende indtil man skriver "exit"
         boolean keepRunning = true;
-
 
         while (keepRunning) {
             userCommand = input.nextLine().toLowerCase();
 
-            // HviRs det er en bevægelseskommando, så kalder vi movePlayer() - Måske avet på en dum/forkert måde men...
-            // Det er for at undgå beskeden "You cannot go this way - try another direction når vi f.eks. skriver herlp
+            // Hvis det er en bevægelseskommando, så kalder vi movePlayer() - Måske lavet på en dum/forkert måde men...
+            // Det er for at undgå beskeden "You cannot go this way - try another direction når vi f.eks. skriver help
             // Da den samtidig tjekker for nextRooms værdi
             if (userCommand.equals("go north") || userCommand.equals("n") ||
                     userCommand.equals("go south") || userCommand.equals("s") ||
@@ -33,35 +31,37 @@ public class AdventureGameController {
                 player1.movePlayer(userCommand);
             } else {
                 switch (userCommand) {
-                    case "help", "h" -> System.out.println("Commands:\ngo north - To go north\ngo south - To go south\ngo east - To go east\n" +
-                            "go west - To go west\nlook - To look around current room\ntake - to take item in current room \ndrop - to drop item from inventory \ninventory - to view items in your inventory" +
-                            "\nhelp - To view commands\nexit - to exit the game");
-                    case "look", "l" ->{
+                    case "help", "h" -> printHelp();
+                    case "look", "l" -> {
                         System.out.println("Looking around the room...");
                         System.out.println(player1.getCurrentRoom().getDescription());
-                        if(!player1.getCurrentRoom().getItemList().isEmpty()) {
+                        if (!player1.getCurrentRoom().getItemList().isEmpty()) {
                             System.out.println("\nTotal item(s) in this room: " + player1.getCurrentRoom().totalItemCounter() + player1.getCurrentRoom().displayItems());
                         } else {
                             System.out.println(player1.getCurrentRoom().displayItems());
-                        }break;
+                        }
+                        break;
                     }
-
-                    //MANGLER---
-                    case "take", "t" -> {
+                    case "take", "t", "take " -> {
                         System.out.println("What would you like to take? *Enter item name*" + player1.getCurrentRoom().displayItems());
                         String userSearchItem = input.nextLine();
                         Item itemFinder = player1.getCurrentRoom().findItem(userSearchItem);
-                        if (itemFinder != null){
+                        if (itemFinder != null) {
                             player1.addToPlayerInventory(itemFinder);
                             player1.removeItemFromRoom(itemFinder);
-                            System.out.println("You have added " + itemFinder.getName() + " to your inventory!" + "\ntype 'inventory' to view your updated inventory!");
+                            System.out.println("You have added a " + "'" + itemFinder.getName() + "´" + " to your inventory." + "\ntype 'inventory' to view your updated inventory");
                         }
                     }
-                    //MANGLER---
-                    case "drop", "d" ->{
+                    case "drop", "d", "drop " -> {
                         System.out.println("What item would you like to drop?");
                         player1.viewInventory();
                         String itemToDrop = input.nextLine();
+                        Item itemFinderDrop = player1.findItem2(itemToDrop);
+                        if (itemFinderDrop != null) {
+                            player1.addItemToRoom(itemFinderDrop);
+                            player1.removeFromPlayerInventory(itemFinderDrop);
+                            System.out.println("You have removed: " + itemFinderDrop.getName() + " from your inventory. \ntype 'inventory' to view your updated inventory");
+                        }
                     }
                     case "inventory", "i" -> player1.viewInventory();
                     case "exit", "x" -> {
@@ -74,4 +74,13 @@ public class AdventureGameController {
         }
     }
 
+    public void printHelp() {
+        System.out.println("Type 'help' - to view commands");
+        System.out.println("Type 'go (direction)' - to go a specific direction \nDirections:South,East,West and North");
+        System.out.println("Type 'look' - to look in the current room you are in");
+        System.out.println("Type 'take' - to take items");
+        System.out.println("Type 'drop' - to drop items");
+        System.out.println("Type 'inventory' - to view your inventory");
+        System.out.println("Type 'exit' - to exit the game");
+    }
 }

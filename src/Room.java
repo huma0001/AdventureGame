@@ -106,6 +106,7 @@ public class Room {
     }
 
 
+
     /* Min gamle løsning til findItem
     public Item findItem(String searchForItemName){
         ArrayList<Item> itemFinder = new ArrayList<Item>();
@@ -117,7 +118,6 @@ public class Room {
             }
         }
     }
-
      */
 
     // To string

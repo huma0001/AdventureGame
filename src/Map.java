@@ -39,82 +39,66 @@ public class Map {
 
 
         // Rooms bliver lavet
-        Room room1 = new Room("\n---Room 1---", "\nThis room has no distinct features - It has two doors");
+        Room room1 = new Room("\n---Stone Pillar Hall---", "\nA big, open space with a tall stone pillar at the center. Large rocks are scattered around, and the ceiling is full of sharp, hanging stones. \nTwo exits are visible: one through a narrow archway and another through a rough, uneven doorway leading deeper into the cave.");
         room1.addItem(item1);
         room1.addItem(item2);
-        Room room2 = new Room("\n---Room 2---", "\nThis room has a very weird looking painting on the wall - it has two doors.");
+        Room room2 = new Room("\n---Painted Wall Room---", "\nThis room has a very weird-looking painting on the wall. \nThere are two doorways here, one through a low, stone arch and another leading back to where you came from.");
         room2.addItem(item3);
-        Room room3 = new Room("\n---Room 3---", "\nThis room has no distinct features - it has two doors");
+        Room room3 = new Room("\n---Silent Chamber---", "\nThis room has no distinct features, with bare rock walls and a cold draft. \nA small tunnel slopes downward ahead, while a rough-hewn doorway lies in the opposite direction.");
         room3.addItem(item4);
-        Room room4 = new Room("\n---Room 4---", "\nThis room has a very weird smell - it has two doors");
+        Room room4 = new Room("\n---Musty Hollow---", "\nThe air here smells strange and musty, making you uncomfortable. \nThere’s a cracked opening in the rock ahead, and a wide stone arch leading back to the previous room.");
         room4.addItem(item5);
         room4.addItem(item6);
-        Room room5 = new Room("\n---Room 5---", "\nThis room has a big golden chest - it has one door");
+        Room room5 = new Room("\n---Golden Chest Room---", "\nA large golden chest dominates the center of this room. \nA heavy wooden door, slightly ajar, invites you to continue forward.\n");
         room5.addItem(item7);
-        Room room6 = new Room("\n---Room 6---", "\nThis room has no distinct features - It has two doors");
+        Room room6 = new Room("\n---Sharp Rock Chamber---", "\nA cold, bare room with sharp rocks poking out of the walls. \nAn open passage lies before you, and a jagged tunnel leads further down.");
         room6.addItem(item8);
         room6.addItem(item9);
-        Room room7 = new Room("\n---Room 7---", "\nThis room has a cat in the corner, it looks scared - it has two doors");
-        Room room8 = new Room("\n---Room 8---", "\nThis room has no distinct features but it has an extra door to choose from - It has three doors in total");
-        Room room9 = new Room("\n---Room 9---", "\nThis room has no distinct features but a few items - It has two doors");
+        Room room7 = new Room("\n---Cat's Refuge---", "\nA scared cat huddles in the corner, watching your every move. \nA carved stone doorway stands ahead, while a narrow hallway stretches out in another direction");
+
+        Room room8 = new Room("\n---Three-Way Cavern---", "\nThis room offers no distinct features but has several exits. \nA plain stone door lies before you, a small crevice opens between the rocks, and a narrow corridor leads back to where you came from");
+
+        Room room9 = new Room("\n---Item Vault---", "\nA few scattered items lie on the ground. \nOne path curves around the stone wall, while a tight opening in the rock leads into another section of the cave.");
         room9.addItem(item10);
         room9.addItem(item11);
         room9.addItem(item12);
 
 
         // Set directions for room 1 - Her definerer vi hvor brugeren kan gå
-        room1.setNorth(null);
         room1.setEast(room2);
         room1.setSouth(room4);
-        room1.setWest(null);
 
 
         // Set directions for room 2
-        room2.setNorth(null);
         room2.setEast(room3);
-        room2.setSouth(null);
         room2.setWest(room1);
 
         // Set directions for room 3
-        room3.setNorth(null);
-        room3.setEast(null);
         room3.setSouth(room6);
         room3.setWest(room2);
 
         // Set directions for room 4
         room4.setNorth(room1);
-        room4.setEast(null);
         room4.setSouth(room7);
-        room4.setWest(null);
 
         // Set directions for room 5
-        room5.setNorth(null);
-        room5.setEast(null);
         room5.setSouth(room8);
-        room5.setWest(null);
 
         // Set directions for room 6
         room6.setNorth(room3);
-        room6.setEast(null);
         room6.setSouth(room9);
-        room6.setWest(null);
 
         // Set directions for room 7
         room7.setNorth(room4);
         room7.setEast(room8);
-        room7.setSouth(null);
-        room7.setWest(null);
 
         // Set directions for room 8
         room8.setNorth(room5);
         room8.setEast(room9);
-        room8.setSouth(null);
         room8.setWest(room7);
 
         // Set directions for room 9
         room9.setNorth(room6);
-        room9.setEast(null);
-        room9.setSouth(null);
         room9.setWest(room8);
 
         // Vi returnerer room 1 når vi kalder roomCreator(), da vi gerne vil returnere hvor brugeren starter spillet

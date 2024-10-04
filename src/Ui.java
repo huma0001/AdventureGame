@@ -18,9 +18,10 @@ public class Ui {
         currentRoom = roomSpawn;
 
         // Introduktion
-        System.out.println("\nSpawn location: " + currentRoom.getName() + "\n");
+        System.out.println("\nSpawn location: " + currentRoom.getName() + currentRoom.getDescription() + "\n");
         System.out.println("What would you like to do?");
         System.out.println("---Type help to view the possible commands---");
 
     }
+
 }

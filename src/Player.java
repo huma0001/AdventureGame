@@ -18,10 +18,10 @@ public class Player {
     // Vi har lavet nextRoom af typen Room, når vi laver det op på denne måde vil det sige at "nextRoom" kommer til at have værdien af vores resultat fra switch
     public void movePlayer(String userInput){
         Room nextRoom = switch (userInput.toLowerCase()){
-            case "go north", "n" -> currentRoom.getNorth();
-            case "go south", "s" -> currentRoom.getSouth();
-            case "go west", "w" -> currentRoom.getWest();
-            case "go east", "e" -> currentRoom.getEast();
+            case "go north", "n", "north" -> currentRoom.getNorth();
+            case "go south", "s", "south" -> currentRoom.getSouth();
+            case "go west", "w", "west" -> currentRoom.getWest();
+            case "go east", "e", "east" -> currentRoom.getEast();
             default -> null;
         };
 
@@ -68,6 +68,16 @@ public class Player {
             itemNumber++;
         }
         System.out.println("You have a total of " + itemCounter + " item(s) in your inventory");
+    }
+
+    public Item findItem2(String searchForItemName){
+        for (Item item : playerInventory) {
+            if (item.getName().equalsIgnoreCase(searchForItemName)) {
+                return item;
+            }
+        }
+        System.out.println("The item you are searching for: " + searchForItemName + " , does not exist in here.");
+        return null;
     }
 
 
