@@ -2,22 +2,6 @@ import java.util.ArrayList;
 import java.util.Random;
 public class Map {
 
-    /* Kan ikke få den her kode til at virke endnu
-    public ArrayList<Item> itemCreator(){
-        ArrayList<Item> itemList = new ArrayList<Item>();
-        Item item1 = new Item("Sword", "Long and rusty");
-        Item item2 = new Item("Lamp", "Old and worn");
-        Item item3 = new Item("Hat", "Black and dusty");
-
-        itemList.add(item1);
-        itemList.add(item1);
-        itemList.add(item1);
-
-
-        return itemList;
-    }
-     */
-
     public Room roomCreator(){
         Map map = new Map();
 
@@ -33,7 +17,7 @@ public class Map {
         Item item8 = new Item("rock", ", It's shaped like a razor ");
         Item item9 = new Item("Stick", ", It's broken in half");
 
-        Item item10 = new Item("Gold coin",", It's shiny");
+        Item item10 = new Item("GoldCoin",", It's shiny");
         Item item11 = new Item("shield", ", The wood looks moldy");
         Item item12 = new Item("scroll", ", The words are unreadable");
 
