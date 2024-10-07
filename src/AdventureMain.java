@@ -6,8 +6,8 @@ public class AdventureMain {
         Ui ui = new Ui();
         AdventureGameController gameController = new AdventureGameController();
 
-
         ui.introduktion();
         gameController.startSpillet();
+
     }
 }

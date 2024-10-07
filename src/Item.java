@@ -2,6 +2,13 @@ public class Item {
     private String name;
     private String description;
 
+
+    //Default constructor for Food class
+    public Item (){
+
+    }
+
+
     public Item(String name, String description){
         this.name = name;
         this.description = description;

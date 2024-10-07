@@ -20,7 +20,6 @@ public class AdventureGameController {
 
         String[] splitWord;
 
-
         while (keepRunning) {
             splitWord = input.nextLine().toLowerCase().split(" ");
             userCommand = splitWord[0];
@@ -34,6 +33,13 @@ public class AdventureGameController {
                         }
                     }
                     case "help", "h" -> printHelp();
+                    case "eat", "e" ->{
+                        if (splitWord.length>1){
+                            player1.eatsFood(splitWord[1]);
+                        } else{
+                            System.out.println("What would you like to eat?");
+                        }
+                    }
                     case "look", "l" -> {
                         player1.lookRoom();
                     }
@@ -52,6 +58,7 @@ public class AdventureGameController {
                         }
                     }
                     case "inventory", "i" -> player1.viewInventory();
+                    case "health", "hp" -> System.out.println("Your current Health is: " + player1.getPlayerHealth());
                     case "exit", "x" -> {
                         System.out.println("Exiting the program...");
                         keepRunning = false;
@@ -61,13 +68,13 @@ public class AdventureGameController {
         }
     }
 
-
     public void printHelp() {
         System.out.println("Type 'help' - to view commands");
         System.out.println("Type 'go (direction)' - to go a specific direction \nDirections: South, East, West and North");
         System.out.println("Type 'look' - to look in the current room you are in");
         System.out.println("Type 'take' - to take items");
         System.out.println("Type 'drop' - to drop items");
+        System.out.println("Type 'health' - to view your current health");
         System.out.println("Type 'inventory' - to view your inventory");
         System.out.println("Type 'exit' - to exit the game");
     }

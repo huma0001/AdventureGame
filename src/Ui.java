@@ -22,6 +22,7 @@ public class Ui {
         System.out.println("What would you like to do?");
         System.out.println("---Type help to view the possible commands---");
 
+
     }
 
 }

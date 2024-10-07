@@ -5,6 +5,7 @@ public class Room {
     private String description;
     private Room south,east,west,north;
     private ArrayList<Item> itemList;
+    private ArrayList<Food> foodList;
 
     // Denne klasse er til at lave de specifikke rum og give dem et navn og en description
     public Room(String name, String description){
@@ -63,6 +64,8 @@ public class Room {
         itemList.add(item);
     }
 
+
+
     public ArrayList<Item> getItemList(){
         return itemList;
     }
@@ -74,8 +77,8 @@ public class Room {
             itemCounter += 1;
         }
         return itemCounter;
-
     }
+
 
     public String displayItems(){
         String printresult = "";
