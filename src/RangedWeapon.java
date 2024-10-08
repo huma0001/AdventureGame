@@ -12,9 +12,9 @@ public class RangedWeapon extends Weapon{
     void useWeapon() {
         if(totalUses > 0){
             totalUses--;
-            System.out.println("You fired your " + getName() + " and dealt " + weaponDamage + " Ammo left: " + totalUses);
+            System.out.println("You fired your long range weapon '" + getName() + "' and dealt " + weaponDamage + " damage! \n" + "Ammo left: " + totalUses);
         } else {
-            System.out.println("Your " + getName() + " has 0 ammo!");
+            System.out.println("Your '" + getName() + "' has 0 ammo!");
         }
 
     }

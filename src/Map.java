@@ -40,6 +40,7 @@ public class Map {
         room1.addItem(weapon5);
         room1.addItem(item2);
         room1.addItem(food1);
+
         Room room2 = new Room("\n---Painted Wall Room---", "\nThis room has a very weird-looking painting on the wall. \nThere are two doorways here, one through a low, stone arch and another leading back to where you came from.");
         room2.addItem(item3);
         room2.addItem(food2);

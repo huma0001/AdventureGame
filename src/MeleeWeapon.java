@@ -10,6 +10,6 @@ public class MeleeWeapon extends Weapon{
 
     @Override
     void useWeapon() {
-        System.out.println("You have used your " + getName() + " on a target and have dealt " + weaponDamage + " damage!");
+            System.out.println("You have used your melee weapon '" + getName() + "' on a target\nit dealt " + weaponDamage + " damage!");
     }
 }

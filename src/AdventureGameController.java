@@ -23,7 +23,6 @@ public class AdventureGameController {
         while (keepRunning) {
             splitWord = input.nextLine().toLowerCase().split(" ");
             userCommand = splitWord[0];
-
                 switch (userCommand) {
                     case "go" ->{
                         if (splitWord.length > 1) {
@@ -64,7 +63,9 @@ public class AdventureGameController {
                             System.out.println("Please type 'equip' followed by the weapon you wish to equip \n");
                         }
                     }
-                    // case "fire" ->Mangler at implementerer fireWeapon
+                    case "attack" ->{
+                        player1.fireWeapon();
+                    }
                     case "inventory", "i" -> player1.viewInventory();
                     case "health", "hp" -> System.out.println("Your current Health is: " + player1.getPlayerHealth());
                     case "exit", "x" -> {
@@ -82,8 +83,10 @@ public class AdventureGameController {
         System.out.println("Type 'look' - to look in the current room you are in");
         System.out.println("Type 'take' - to take items");
         System.out.println("Type 'drop' - to drop items");
+        System.out.println("Type 'equip' - to equip items");
+        System.out.println("Type 'attack' - to attack with your currently EQUIPPED weapon");
         System.out.println("Type 'health' - to view your current health");
-        System.out.println("Type 'inventory' - to view your inventory");
+        System.out.println("Type 'inventory' - to view your inventory and current equipped weapon");
         System.out.println("Type 'exit' - to exit the game");
     }
 }

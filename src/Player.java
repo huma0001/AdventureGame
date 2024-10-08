@@ -88,7 +88,11 @@ public class Player {
             itemCounter++;
             itemNumber++;
         }
-        System.out.println("You have a total of " + itemCounter + " item(s) in your inventory\n");
+        if (playerCurrentWeapon != null){
+            System.out.println("\nYou currently have a '" + playerCurrentWeapon.getName() + "' equipped!");
+        }
+        System.out.println("\nYou have a total of " + itemCounter + " item(s) in your inventory\n");
+
     }
 
     // Player take item method
@@ -212,8 +216,6 @@ public class Player {
             if (weaponFinder == null){
                 return;
             }
-
-
             if (weaponFinder instanceof RangedWeapon){
                 // Lavet for at kunne bruge weaponItem metoder
                 Weapon weaponItem = (Weapon) weaponFinder;
@@ -221,32 +223,22 @@ public class Player {
                 // f.eks. det her er useless playerCurrentWeapon = weaponFinder; så istedet skriver jeg således:
                 playerCurrentWeapon = weaponItem;
             } else if (weaponFinder instanceof  MeleeWeapon){
-                System.out.println("You have now equipped a melee ranged weapon: '" + searchWeaponName + "'");
+                Weapon weaponItem = (Weapon) weaponFinder;
+                System.out.println("You have now equipped a melee weapon: '" + searchWeaponName + "'");
+                playerCurrentWeapon =  weaponItem;
             } else {
                 System.out.println("The item '" + searchWeaponName + "' is not a equipable weapon" );
             }
-
-
-
-
         } else {
             System.out.println("Your inventory is empty - there are no weapons to equip");
         }
-
-
-
-
-
-
     }
 
     public void fireWeapon() {
-        if (getPlayerCurrentWeapon() instanceof RangedWeapon) {
-            System.out.println("'" + playerCurrentWeapon.getName() + "' has been used");
+        if (getPlayerCurrentWeapon() instanceof RangedWeapon || getPlayerCurrentWeapon() instanceof MeleeWeapon) {
             playerCurrentWeapon.useWeapon();
-        } else if (getPlayerCurrentWeapon() instanceof MeleeWeapon) {
-            System.out.println("'" + playerCurrentWeapon.getName() + "' has been used");
-            playerCurrentWeapon.useWeapon();
+        } else {
+            System.out.println("You have no weapon equipped");
         }
     }
 
