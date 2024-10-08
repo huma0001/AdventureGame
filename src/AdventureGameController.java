@@ -57,6 +57,14 @@ public class AdventureGameController {
                             System.out.println("Please type 'drop' followed by the item you wish to drop\n");
                         }
                     }
+                    case "equip" ->{
+                        if (splitWord.length > 1){
+                            player1.equipWeapon(splitWord[1]);
+                        } else {
+                            System.out.println("Please type 'equip' followed by the weapon you wish to equip \n");
+                        }
+                    }
+                    // case "fire" ->Mangler at implementerer fireWeapon
                     case "inventory", "i" -> player1.viewInventory();
                     case "health", "hp" -> System.out.println("Your current Health is: " + player1.getPlayerHealth());
                     case "exit", "x" -> {

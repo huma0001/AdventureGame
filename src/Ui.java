@@ -8,7 +8,7 @@ public class Ui {
     public void introduktion(){
         // Introduktion
         System.out.println("\nWelcome to THE-ADVENTURE-GAME!");
-        System.out.println("This game is an advnture game - it has 9 rooms that you can explore by using specific commands");
+        System.out.println("This game is an adventure game - it has 9 rooms that you can explore by using specific commands");
 
         Map map1 = new Map();
 

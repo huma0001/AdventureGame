@@ -4,9 +4,11 @@ public class Player {
     private int playerHealth;
     private Room currentRoom;
     private ArrayList<Item> playerInventory;
+    Weapon playerCurrentWeapon;
 
     public Player(Room roomPlayerSpawn) {
         playerHealth = 100;
+        playerCurrentWeapon = null;
         this.currentRoom = roomPlayerSpawn;
         this.playerInventory = new ArrayList<Item>(); //Jeg initlaiserer den så jeg kan bruge den til f.eks. tilføje items til listen
     }
@@ -36,6 +38,14 @@ public class Player {
             System.out.println("You have moved to " + currentRoom.getName());
             return true;
         }
+    }
+
+    public Weapon getPlayerCurrentWeapon(){
+        return playerCurrentWeapon;
+    }
+
+    public void setPlayerCurrentWeapon(Weapon newWeapon){
+        this.playerCurrentWeapon = newWeapon;
     }
 
     public int getPlayerHealth() {
@@ -72,12 +82,13 @@ public class Player {
     public void viewInventory() {
         int itemCounter = 0;
         int itemNumber = 1;
+        System.out.println("\n---Your inventory---");
         for (Item item : playerInventory) {
             System.out.println(itemNumber + ": " + item);
             itemCounter++;
             itemNumber++;
         }
-        System.out.println("You have a total of " + itemCounter + " item(s) in your inventory");
+        System.out.println("You have a total of " + itemCounter + " item(s) in your inventory\n");
     }
 
     // Player take item method
@@ -190,29 +201,53 @@ public class Player {
         }
 
     }
-}
 
 
 
-/*Gamle kode ***Første forsøg på at lave koden, den virker men er ikke pæn + Food foodFinder problem
-    public void eatsFood(String searchFoodName){
-        int playerHealth = getPlayerHealth();
+    public void equipWeapon(String searchWeaponName){
 
-        if(!getPlayerInventory().isEmpty()){
-            Item foodFinder = findItem2(searchFoodName);
-            if (foodFinder instanceof Food){
-                removeFromPlayerInventory(foodFinder);
-                playerHealth += ((Food) foodFinder).getFoodHealthChange();
-                System.out.println("You have eaten " + searchFoodName + " which was worth " + ((Food) foodFinder).getFoodHealthChange());
-                if (playerHealth > 100) {
-                    playerHealth = 100;
-                    System.out.println("Player's current HP: " + playerHealth);
-                }
-            } else  {
-                System.out.println(searchFoodName + " is not an edible item.");
+        if (!playerInventory.isEmpty()){
+            Item weaponFinder = findItem2(searchWeaponName);
+
+            if (weaponFinder == null){
+                return;
             }
+
+
+            if (weaponFinder instanceof RangedWeapon){
+                // Lavet for at kunne bruge weaponItem metoder
+                Weapon weaponItem = (Weapon) weaponFinder;
+                System.out.println("You have now equipped a long ranged weapon: '" + searchWeaponName + "'");
+                // f.eks. det her er useless playerCurrentWeapon = weaponFinder; så istedet skriver jeg således:
+                playerCurrentWeapon = weaponItem;
+            } else if (weaponFinder instanceof  MeleeWeapon){
+                System.out.println("You have now equipped a melee ranged weapon: '" + searchWeaponName + "'");
+            } else {
+                System.out.println("The item '" + searchWeaponName + "' is not a equipable weapon" );
+            }
+
+
+
+
         } else {
-            System.out.println("Your inventory is empty - There is no food to eat");
+            System.out.println("Your inventory is empty - there are no weapons to equip");
+        }
+
+
+
+
+
+
+    }
+
+    public void fireWeapon() {
+        if (getPlayerCurrentWeapon() instanceof RangedWeapon) {
+            System.out.println("'" + playerCurrentWeapon.getName() + "' has been used");
+            playerCurrentWeapon.useWeapon();
+        } else if (getPlayerCurrentWeapon() instanceof MeleeWeapon) {
+            System.out.println("'" + playerCurrentWeapon.getName() + "' has been used");
+            playerCurrentWeapon.useWeapon();
         }
     }
-*/
+
+}
