@@ -4,7 +4,7 @@ public class Player {
     private int playerHealth;
     private Room currentRoom;
     private ArrayList<Item> playerInventory;
-    Weapon playerCurrentWeapon;
+    private Weapon playerCurrentWeapon;
 
     public Player(Room roomPlayerSpawn) {
         playerHealth = 100;
@@ -135,6 +135,13 @@ public class Player {
         }
     }
 
+    public boolean playerDead(){
+        if(getPlayerHealth() <= 0){
+            return true;
+        }
+        return false;
+    }
+
 
     public Item findItem2(String searchForItemName) {
         for (Item item : playerInventory) {
@@ -145,6 +152,7 @@ public class Player {
         System.out.println("\nThe item you are searching for: " + searchForItemName + " , does not exist in here.\n");
         return null;
     }
+
 
     //Har ikke brugt enums, har ikke forstand på hvordan jeg overhovedet gøre det eller starter med det.
     public void eatsFood(String searchFoodName){
@@ -207,9 +215,7 @@ public class Player {
     }
 
 
-
     public void equipWeapon(String searchWeaponName){
-
         if (!playerInventory.isEmpty()){
             Item weaponFinder = findItem2(searchWeaponName);
 
@@ -234,12 +240,95 @@ public class Player {
         }
     }
 
+    public void fireWeapon(String enemyName) {
+        if (countEnemiesInCurrentRoom() > 0) {
+            Enemy targetEnemy = null;
+
+            // Check if the specific enemy exists
+            for (Enemy enemy : currentRoom.getEnemyList()) {
+                if (enemy.getName().equalsIgnoreCase(enemyName)) {
+                    targetEnemy = enemy;
+                    break;
+                }
+            }
+
+            // If no specific enemy was found, use the first enemy
+            if (targetEnemy == null) {
+                targetEnemy = currentRoom.getEnemyList().get(0); // Get the first enemy
+                System.out.println("You are attacking " + targetEnemy.getName() + "!");
+            } else {
+                System.out.println("You are attacking " + targetEnemy.getName() + "!");
+            }
+
+            // Check if the weapon is equipped
+            if (playerCurrentWeapon != null) {
+                if (targetEnemy.getEnemyHealth() < 0){
+                    targetEnemy.setEnemyHealth(0);
+                }
+                playerCurrentWeapon.playerUseWeapon();
+                targetEnemy.enemyHit(playerCurrentWeapon.getWeaponDamage());
+                System.out.println(targetEnemy.getName() + " now has " + targetEnemy.getEnemyHealth() + " health remaining.");
+            } else {
+                System.out.println("You have no weapon equipped!");
+            }
+
+            // Remove enemy if dead
+            if (targetEnemy.enemyIsDead()) {
+                currentRoom.removeEnemy(targetEnemy);
+                System.out.println(targetEnemy.getName() + " has been defeated!");
+                System.out.println(targetEnemy.getEnemyEquippedWeapon() + " has been dropped! - You can now pick this item up.");
+                currentRoom.addItem(targetEnemy.getEnemyEquippedWeapon());
+            }
+        } else {
+            System.out.println("There are no enemies to attack!");
+        }
+    }
+
+
+
+    public int countEnemiesInCurrentRoom() {
+        return currentRoom.enemyCounter(); // Kald enemyCounter fra den aktuelle room
+    }
+
+    public boolean enemiesInCurrentRoom(){
+        if(currentRoom.getEnemyList().isEmpty()){
+            return false;
+        }
+        return true;
+    }
+
+
+
+    /* Player attackgammel
     public void fireWeapon() {
         if (getPlayerCurrentWeapon() instanceof RangedWeapon || getPlayerCurrentWeapon() instanceof MeleeWeapon) {
-            playerCurrentWeapon.useWeapon();
+            playerCurrentWeapon.playerUseWeapon();
         } else {
             System.out.println("You have no weapon equipped");
         }
     }
+     */
+
+
+    public void printHealth(){
+        System.out.println("Your current Health is: " + getPlayerHealth());
+        if(getPlayerHealth() >= 75){
+            System.out.println("You are healthy.");
+        } else if (getPlayerHealth() <= 74 && getPlayerHealth() > 25){
+            System.out.println("You are damaged, try to find something to eat to heal up!");
+        } else if (getPlayerHealth() < 25 && getPlayerHealth() > 0){
+            System.out.println("You are critically low! - Find some food to heal you up as soon as possible!");
+        } else if (getPlayerHealth() <= 0){
+            System.out.println("Your character has died...");
+            return; //lav et eller andet til at bryde ud af loopen
+        }
+    }
+
+
+    public void playerHit(int toPlayerDamage){
+        playerHealth -= toPlayerDamage;
+    }
+
+
 
 }

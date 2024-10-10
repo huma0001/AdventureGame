@@ -1,4 +1,3 @@
-import java.util.Scanner;
 public class AdventureMain {
 
     public static void main(String[] args) {
@@ -7,7 +6,7 @@ public class AdventureMain {
         AdventureGameController gameController = new AdventureGameController();
 
         ui.introduktion();
-        gameController.startSpillet();
+        gameController.startGame();
 
     }
 }

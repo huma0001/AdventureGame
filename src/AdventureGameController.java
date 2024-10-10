@@ -3,7 +3,7 @@ import java.util.Scanner;
 // Controller klasse
 public class AdventureGameController {
 
-    public void startSpillet() {
+    public void startGame() {
         Scanner input = new Scanner(System.in);
 
         // Vi laver et nyt map da vi skal bruge map1.roomCreator til at lave rummene, det er en metode i Map klassen.
@@ -13,6 +13,11 @@ public class AdventureGameController {
         // Her bliver rumene dannet og spawn room'et bliver sat til room1 via. Map klassen, da roomCreator returnerer room1
         Room roomSpawn = map1.roomCreator();
 
+        //Creating enemy weapons
+        Weapon enemyWeapon1 = new MeleeWeapon("Hammer", "a Big hammer" , 35);
+        //Creating enemies
+        Enemy enemy1 = new Enemy("Bob", " Big and scary", 100, enemyWeapon1);
+
         Player player1 = new Player(roomSpawn);
 
         // While loop for at holde programmet kørende indtil man skriver "exit"
@@ -20,7 +25,7 @@ public class AdventureGameController {
 
         String[] splitWord;
 
-        while (keepRunning) {
+        while (keepRunning && !player1.playerDead()) {
             splitWord = input.nextLine().toLowerCase().split(" ");
             userCommand = splitWord[0];
                 switch (userCommand) {
@@ -41,6 +46,7 @@ public class AdventureGameController {
                     }
                     case "look", "l" -> {
                         player1.lookRoom();
+                        player1.getCurrentRoom().displayEnemies();
                     }
                     case "take", "t", "take " -> {
                         if (splitWord.length > 1) {
@@ -64,10 +70,17 @@ public class AdventureGameController {
                         }
                     }
                     case "attack" ->{
-                        player1.fireWeapon();
+                        if (splitWord.length > 1) {
+                            player1.fireWeapon(splitWord[1]);
+                        } else {
+                            player1.fireWeapon(splitWord[0]);
+                        }
+                        if (player1.getPlayerCurrentWeapon() != null) {
+                            enemy1.enemyHitPlayer(player1);
+                        }
                     }
                     case "inventory", "i" -> player1.viewInventory();
-                    case "health", "hp" -> System.out.println("Your current Health is: " + player1.getPlayerHealth());
+                    case "health", "hp" -> player1.printHealth();
                     case "exit", "x" -> {
                         System.out.println("Exiting the program...");
                         keepRunning = false;
@@ -75,7 +88,9 @@ public class AdventureGameController {
                     default -> System.out.println("Invalid command - Type 'help' to view commands");
                 }
         }
+        System.out.println("Game is over.");
     }
+
 
     public void printHelp() {
         System.out.println("Type 'help' - to view commands");

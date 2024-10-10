@@ -5,6 +5,11 @@ public class Map {
     public Room roomCreator(){
         Map map = new Map();
 
+        //Creating enemies
+        Weapon enemyWeapon1 = new MeleeWeapon("Hammer", " \n---Its a giant hammer" , 25);
+        Enemy enemy1 = new Enemy("Bob", "--- This character is big and scary", 125, enemyWeapon1);
+
+
         //Creating all weapons
         Item weapon1 = new MeleeWeapon("Bat", ", It's a wooden bat - wonder if it can be used as a weapon?", 25);
         Item weapon2 = new RangedWeapon("Pistol", ", It's a pistol that looks beat up, might still work...", 2, 65);
@@ -12,12 +17,13 @@ public class Map {
         Item weapon4 = new MeleeWeapon("Brick", ", It's a half broken brick, looks brittle but can be probably be used as a weapon before it decays...", 10);
         Item weapon5 = new MeleeWeapon("Sword", ", It's long and rusty - Perfect for self-defense", 45);
 
+
         //Creating all foods
         Item food1 = new Food("Apple", ", It's green and looks tasty", 20);
-        Item food2 = new Food("Banana", ", It's looking real ripe, but has a hole with a worm sticking out of it - maybe it wont be so bad?", -30);
+        Item food2 = new Food("Banana", ", It's looking real ripe, but has a hole with a worm sticking out of it - maybe it wont be so bad?", -15);
         Item food3 = new Food("Sugar", ", It's an old-fashioned looking can of Sugar - its a half full" , 15);
-        Item food4 = new Food("Dead-chicken", ", It's a body of a dead chicken, looks like the bugs are enjoying it as a meal - surely i can too?", (-75));
-        Item food5 = new Food("Watermelon", ", It's a whole, untouched watermelon. It looks perfectly fine" , 75);
+        Item food4 = new Food("Dead-chicken", ", It's a body of a dead chicken, looks like the bugs are enjoying it as a meal - surely i can too?", (-35));
+        Item food5 = new Food("Watermelon", ", It's a whole, untouched watermelon. It looks perfectly fine" , 65);
 
         // Creating all items
         Item item2 = new Item("Lamp", ", It's old and worn");
@@ -33,6 +39,7 @@ public class Map {
         Item item10 = new Item("GoldCoin",", It's shiny");
         Item item11 = new Item("shield", ", The wood looks moldy");
         Item item12 = new Item("scroll", ", The words are unreadable");
+
 
 
         // Creating all rooms
@@ -51,7 +58,7 @@ public class Map {
         room4.addItem(item5);
         room4.addItem(item6);
         room4.addItem(weapon1);
-
+        room4.addEnemy(enemy1);
 
         Room room5 = new Room("\n---Golden Chest Room---", "\nA large golden chest dominates the center of this room. \nA heavy wooden door, slightly ajar, invites you to continue forward.\n");
         room5.addItem(item7);

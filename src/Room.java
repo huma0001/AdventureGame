@@ -6,12 +6,14 @@ public class Room {
     private Room south,east,west,north;
     private ArrayList<Item> itemList;
     private ArrayList<Food> foodList;
+    private ArrayList<Enemy> enemyList;
 
     // Denne klasse er til at lave de specifikke rum og give dem et navn og en description
     public Room(String name, String description){
         this.name = name;
         this.description = description;
         this.itemList = new ArrayList<Item>(); // Initialiserer som en tom liste
+        this.enemyList = new ArrayList<Enemy>();
     }
 
     // Getter metode til alle instans variabler
@@ -64,6 +66,13 @@ public class Room {
         itemList.add(item);
     }
 
+    public void addEnemy(Enemy enemy){
+        enemyList.add(enemy);
+    }
+
+    public void removeEnemy(Enemy enemy){
+        enemyList.remove(enemy);
+    }
 
 
     public ArrayList<Item> getItemList(){
@@ -77,6 +86,43 @@ public class Room {
             itemCounter += 1;
         }
         return itemCounter;
+    }
+
+
+    public int enemyCounter(){
+        Room room;
+        int enemyCounter = 0;
+        for (Enemy enemy : enemyList){
+            enemyCounter++;
+        }
+        return enemyCounter;
+    }
+
+    public ArrayList<Enemy> getEnemyList() {
+        return enemyList;
+    }
+
+    public void setEnemyList(ArrayList<Enemy> enemyList) {
+        this.enemyList = enemyList;
+    }
+
+
+    public void displayEnemies(){
+        String printresult = "";
+        int enemyCounter = 1;
+        int i = 0;
+        if (enemyList.isEmpty()){
+            printresult = "\nThere are no enemies in this room";
+        } else {
+            printresult += "\nEnemies in this room:\n";
+            for (Enemy enemy : enemyList) {
+                printresult += enemyCounter + ": " + "Name: " + enemyList.get(i).toString() + " --- Health: " + enemyList.get(i).getEnemyHealth();
+                enemyCounter += 1;
+                i++;
+            }
+        }
+        System.out.println(printresult);
+
     }
 
 
@@ -96,8 +142,6 @@ public class Room {
     }
 
     //Metode til at tjekke om playeren er i samme rum som det item han prøver at tage - bruger findItem metoden
-
-    //Nye løsning til findItem
     public Item findItem(String searchForItemName){
         for (Item item : itemList) {
             if (item.getName().equalsIgnoreCase(searchForItemName)) {
@@ -107,21 +151,6 @@ public class Room {
         System.out.println("The item you are searching for: " + searchForItemName + " , does not exist in here.");
         return null;
     }
-
-
-
-    /* Min gamle løsning til findItem
-    public Item findItem(String searchForItemName){
-        ArrayList<Item> itemFinder = new ArrayList<Item>();
-        for (Item item : itemList){
-            if(item.getName().contains(searchForItemName)){
-                itemFinder.add(item);
-            } else if (itemFinder.isEmpty()){
-                System.out.println("There is no such thing as: " + searchForItemName);
-            }
-        }
-    }
-     */
 
     // To string
     public String toString() {
